@@ -21,7 +21,7 @@ if(!isset($_SESSION['Username'])){
     <div style="display: inline-flex" align="center">
         <div align="left">
         <?php password_hash ?>
-           <div class="post" id="getSearchResult">
+           <div class="post" id="getSearchResult" style="min-width: 560px">
 <?php
 $s_id = $_SESSION['id'];
 $q = trim(filter_var(htmlentities($_GET['q']),FILTER_SANITIZE_STRING));

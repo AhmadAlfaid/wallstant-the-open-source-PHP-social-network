@@ -100,11 +100,12 @@ if (isset($_POST['submitR'])) {
     <br>
    <?php
         $n=0;
-        $fetchReports = $conn->prepare("SELECT r_id,from_id,r_type,report,r_time FROM supportbox WHERE r_id =:rid");
+        $fetchReports = $conn->prepare("SELECT r_id,for_id,from_id,r_type,report,r_time FROM supportbox WHERE r_id =:rid");
         $fetchReports->bindParam(':rid',$rid,PDO::PARAM_INT);
         $fetchReports->execute();
         while ($fetchR_Rows = $fetchReports->fetch(PDO::FETCH_ASSOC)) {
         $replay_id = $fetchR_Rows['r_id'];
+        $for_id = $fetchR_Rows['for_id'];
         $from_id = $fetchR_Rows['from_id'];
         $report = $fetchR_Rows['report'];
         $r_type = $fetchR_Rows['r_type'];
@@ -114,7 +115,7 @@ if (isset($_POST['submitR'])) {
                 $report = $report;
             break;
             case 'post':
-                $report = lang('report_about_post');
+                $report = "<a href='".$dircheckPath."posts/post?pid=$for_id'>".lang('report_about_post')."</a>";
             break;
         }
         $fetchFrom = $conn->prepare("SELECT Fullname,Username,Userphoto FROM signup WHERE id = :from_id");

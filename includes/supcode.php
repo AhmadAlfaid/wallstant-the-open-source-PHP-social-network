@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("../config/connect.php");
-$signup_id = rand(0,999999999)+time();
+$signup_id = (rand(0,99999).time()) + time();
 $signup_fullname = filter_var(htmlentities($_POST['fn']),FILTER_SANITIZE_STRING);
 $signup_username = filter_var(htmlentities($_POST['un']),FILTER_SANITIZE_STRING);
 $signup_email = filter_var(htmlentities($_POST['em']),FILTER_SANITIZE_STRING);

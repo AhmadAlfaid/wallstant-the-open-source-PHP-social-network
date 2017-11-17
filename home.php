@@ -237,8 +237,22 @@ while ($getS_row = $getS->fetch(PDO::FETCH_ASSOC)) {
                 </div>
                    <div id="FetchingPostsDiv">
                 </div>
-                <div class="post loading-info" id="LoadingPostsDiv">
-                  <p style="background: url(imgs/loading_video.gif) center center no-repeat;width: 100%;height: 80px;margin: 0px;"></p>
+                <div class="post loading-info" id="LoadingPostsDiv" style="padding: 8px;padding-bottom: 100px;">
+                    <div class="animated-background">
+                        <div class="background-masker header-top"></div>
+                        <div class="background-masker header-left"></div>
+                        <div class="background-masker header-right"></div>
+                        <div class="background-masker header-bottom"></div>
+                        <div class="background-masker subheader-left"></div>
+                        <div class="background-masker subheader-right"></div>
+                        <div class="background-masker subheader-bottom"></div>
+                        <div class="background-masker content-top"></div>
+                        <div class="background-masker content-first-end"></div>
+                        <div class="background-masker content-second-line"></div>
+                        <div class="background-masker content-second-end"></div>
+                        <div class="background-masker content-third-line"></div>
+                        <div class="background-masker content-third-end"></div>
+                    </div>
                 </div>
                 <div class="post  loading-info" id="NoMorePostsDiv" style="display: none;">
                   <p style="color: #b1b1b1;text-align: center;padding: 15px;margin: 0px;font-size: 18px;"><?php echo lang('noMoreStories'); ?></p>

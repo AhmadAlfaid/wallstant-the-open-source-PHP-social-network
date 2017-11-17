@@ -1,8 +1,3 @@
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
-</script>
 <?php
 session_start();
 include("../config/connect.php");

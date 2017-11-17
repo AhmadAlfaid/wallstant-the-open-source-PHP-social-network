@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 12, 2017 at 05:01 PM
+-- Generation Time: Nov 17, 2017 at 08:14 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -27,9 +27,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `comments` (
-  `c_id` int(50) NOT NULL,
-  `c_author_id` int(11) NOT NULL,
-  `c_post_id` int(11) NOT NULL,
+  `c_id` bigint(50) NOT NULL,
+  `c_author_id` bigint(11) NOT NULL,
+  `c_post_id` bigint(11) NOT NULL,
   `c_content` varchar(10000) CHARACTER SET utf8mb4 NOT NULL,
   `c_edited` int(11) NOT NULL DEFAULT '0',
   `c_time_edited` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
@@ -43,9 +43,9 @@ CREATE TABLE `comments` (
 --
 
 CREATE TABLE `follow` (
-  `id` int(11) NOT NULL,
-  `uf_one` int(11) NOT NULL,
-  `uf_two` int(11) NOT NULL
+  `id` bigint(11) NOT NULL,
+  `uf_one` bigint(11) NOT NULL,
+  `uf_two` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -55,9 +55,9 @@ CREATE TABLE `follow` (
 --
 
 CREATE TABLE `likes` (
-  `id` int(11) NOT NULL,
-  `liker` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL
+  `id` bigint(11) NOT NULL,
+  `liker` bigint(11) NOT NULL,
+  `post_id` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -68,10 +68,10 @@ CREATE TABLE `likes` (
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
-  `m_id` int(11) NOT NULL,
+  `m_id` bigint(11) NOT NULL,
   `message` varchar(1538) CHARACTER SET utf8mb4 NOT NULL,
-  `m_from` int(11) NOT NULL,
-  `m_to` int(11) NOT NULL,
+  `m_from` bigint(11) NOT NULL,
+  `m_to` bigint(11) NOT NULL,
   `m_time` int(11) NOT NULL,
   `m_seen` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -84,8 +84,8 @@ CREATE TABLE `messages` (
 
 CREATE TABLE `mynotepad` (
   `main_id` int(11) NOT NULL,
-  `id` int(20) NOT NULL,
-  `author_id` int(11) NOT NULL,
+  `id` bigint(20) NOT NULL,
+  `author_id` bigint(11) NOT NULL,
   `note_title` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
   `note_content` varchar(10000) CHARACTER SET utf8mb4 NOT NULL,
   `note_time` int(11) NOT NULL
@@ -99,10 +99,10 @@ CREATE TABLE `mynotepad` (
 
 CREATE TABLE `notifications` (
   `id` int(11) NOT NULL,
-  `n_id` int(11) NOT NULL,
-  `from_id` int(11) NOT NULL,
-  `for_id` int(11) NOT NULL,
-  `notifyType_id` int(11) NOT NULL,
+  `n_id` bigint(11) NOT NULL,
+  `from_id` bigint(11) NOT NULL,
+  `for_id` bigint(11) NOT NULL,
+  `notifyType_id` bigint(11) NOT NULL,
   `notifyType` varchar(100) NOT NULL,
   `seen` int(11) NOT NULL DEFAULT '0',
   `time` int(11) NOT NULL
@@ -115,9 +115,9 @@ CREATE TABLE `notifications` (
 --
 
 CREATE TABLE `r_star` (
-  `id` int(11) NOT NULL,
-  `u_id` int(11) NOT NULL,
-  `p_id` int(11) NOT NULL
+  `id` bigint(11) NOT NULL,
+  `u_id` bigint(11) NOT NULL,
+  `p_id` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -128,9 +128,9 @@ CREATE TABLE `r_star` (
 
 CREATE TABLE `saved` (
   `main_id` int(11) NOT NULL,
-  `id` int(20) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `user_saved_id` int(11) NOT NULL,
+  `id` bigint(20) NOT NULL,
+  `post_id` bigint(11) NOT NULL,
+  `user_saved_id` bigint(11) NOT NULL,
   `saved_time` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -142,7 +142,7 @@ CREATE TABLE `saved` (
 
 CREATE TABLE `signup` (
   `main_id` int(11) NOT NULL,
-  `id` int(50) NOT NULL,
+  `id` bigint(50) NOT NULL,
   `Fullname` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
   `Username` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
   `Email` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
@@ -160,7 +160,6 @@ CREATE TABLE `signup` (
   `bio` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
   `admin` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
   `gender` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
-  `profile_pic_border` int(11) NOT NULL,
   `login_attempts` int(11) NOT NULL,
   `language` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
   `aSetup` int(11) NOT NULL DEFAULT '0',
@@ -175,9 +174,9 @@ CREATE TABLE `signup` (
 
 CREATE TABLE `supportbox` (
   `id` int(11) NOT NULL,
-  `r_id` int(11) NOT NULL,
-  `from_id` int(11) NOT NULL,
-  `for_id` int(11) NOT NULL,
+  `r_id` bigint(11) NOT NULL,
+  `from_id` bigint(11) NOT NULL,
+  `for_id` bigint(11) NOT NULL,
   `r_type` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
   `subject` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
   `report` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
@@ -194,9 +193,9 @@ CREATE TABLE `supportbox` (
 --
 
 CREATE TABLE `typing_m` (
-  `id` int(11) NOT NULL,
-  `t_from` int(11) NOT NULL,
-  `t_to` int(11) NOT NULL
+  `id` bigint(11) NOT NULL,
+  `t_from` bigint(11) NOT NULL,
+  `t_to` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -206,8 +205,8 @@ CREATE TABLE `typing_m` (
 --
 
 CREATE TABLE `wpost` (
-  `post_id` int(50) NOT NULL,
-  `author_id` int(11) NOT NULL,
+  `post_id` bigint(50) NOT NULL,
+  `author_id` bigint(11) NOT NULL,
   `post_img` varchar(1000) CHARACTER SET utf8mb4 NOT NULL,
   `post_time` int(11) NOT NULL,
   `post_content` mediumtext CHARACTER SET utf8mb4 NOT NULL,
@@ -301,22 +300,22 @@ ALTER TABLE `wpost`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `c_id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `c_id` bigint(50) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `mynotepad`
 --
@@ -326,12 +325,12 @@ ALTER TABLE `mynotepad`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `r_star`
 --
 ALTER TABLE `r_star`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `saved`
 --
@@ -341,17 +340,17 @@ ALTER TABLE `saved`
 -- AUTO_INCREMENT for table `signup`
 --
 ALTER TABLE `signup`
-  MODIFY `main_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `main_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `supportbox`
 --
 ALTER TABLE `supportbox`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `typing_m`
 --
 ALTER TABLE `typing_m`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

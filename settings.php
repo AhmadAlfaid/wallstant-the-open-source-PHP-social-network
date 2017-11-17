@@ -40,8 +40,6 @@ $birthday_var = filter_var(htmlentities($_POST['bd_year']),FILTER_SANITIZE_NUMBE
 $website_var = filter_var(htmlentities($_POST['edit_website']),FILTER_SANITIZE_STRING);
 $bio_var = filter_var(htmlentities($_POST['edit_bio']),FILTER_SANITIZE_STRING);
 
-$profile_pic_border_var = filter_var(htmlentities($_POST['edit_profile_pic_border']),FILTER_SANITIZE_NUMBER_INT);
-
 $language_var = filter_var(htmlspecialchars($_POST['edit_language']),FILTER_SANITIZE_STRING);
 
 $general_current_pass_var = filter_var(htmlentities($_POST['general_current_pass']),FILTER_SANITIZE_STRING);
@@ -128,12 +126,7 @@ if (isset($_POST['EditProfile_save_changes'])) {
 if (!password_verify($EditProfile_current_pass_var,$_SESSION['Password'])) {
     $EditProfile_save_result = "<p class='alertRed'>".lang('current_password_is_incorrect')."</p>";
 }else{
-    if ($profile_pic_border_var == lang('circle')) {
-        $profile_pic_border_result = "0";
-    }elseif ($profile_pic_border_var == lang('square')) {
-        $profile_pic_border_result = "1";
-    }
-    $update_info_sql = "UPDATE signup SET school= :school_var,work0= :work0_var,work= :work_var,country= :country_var,birthday= :birthday_var,website= :website_var,bio= :bio_var,profile_pic_border= :profile_pic_border_result WHERE username= :session_un";
+    $update_info_sql = "UPDATE signup SET school= :school_var,work0= :work0_var,work= :work_var,country= :country_var,birthday= :birthday_var,website= :website_var,bio= :bio_var WHERE username= :session_un";
      $update_info = $conn->prepare($update_info_sql);
      $update_info->bindParam(':school_var',$school_var,PDO::PARAM_STR);
      $update_info->bindParam(':work0_var',$work0_var,PDO::PARAM_STR);
@@ -143,7 +136,6 @@ if (!password_verify($EditProfile_current_pass_var,$_SESSION['Password'])) {
      $update_info->bindParam(':website_var',$website_var,PDO::PARAM_STR);
      $update_info->bindParam(':bio_var',$bio_var,PDO::PARAM_STR);
      $update_info->bindParam(':session_un',$session_un,PDO::PARAM_STR);
-     $update_info->bindParam(':profile_pic_border_result',$profile_pic_border_result,PDO::PARAM_INT);
      $update_info->execute();
     if (isset($update_info)) {
         $_SESSION['school'] = $school_var;
@@ -153,7 +145,6 @@ if (!password_verify($EditProfile_current_pass_var,$_SESSION['Password'])) {
         $_SESSION['birthday'] = $birthday_var;
         $_SESSION['website'] = $website_var;
         $_SESSION['bio'] = $bio_var;
-        $_SESSION['profile_pic_border'] = $profile_pic_border_var;
         $EditProfile_save_result = "<p class='alertGreen'>".lang('changes_saved_seccessfully')."</p>";
     } else {
         $EditProfile_save_result = "<p class='alertRed'>".lang('errorSomthingWrong')."</p>";
@@ -344,12 +335,6 @@ if (!password_verify($remeveA_current_pass_var,$_SESSION['Password'])) {
         <p class="settings_fieldTitle"><?php echo lang('bio'); ?></p>
         <textarea style="resize:none;height: 100px" dir="auto" class="settings_textfield" placeholder="150" maxlength="150" type="text" name="edit_bio"><?php echo $_SESSION['bio']; ?></textarea></p>
         <p>
-        <p class="settings_fieldTitle"><?php echo lang('profile_pic_shape'); ?></p>
-        <select class="settings_textfield" name="edit_profile_pic_border">
-            <option <?php if($_SESSION['profile_pic_border'] == lang('circle')){ echo "selected";} ?> ><?php echo lang('circle'); ?></option>
-            <option <?php if($_SESSION['profile_pic_border'] == lang('square')){ echo "selected";} ?> ><?php echo lang('square'); ?></option>
-        </select>
-        </p>
         <div style="background: #e9ebee; border-radius: 3px; padding: 15px;">
          <p><input class="settings_textfield" type="password" name="EditProfile_current_pass" placeholder="<?php echo lang('current_password'); ?>" style="background: #fff;" /></p>
          <p style="margin: 0;"><input class="btn_blue" name="EditProfile_save_changes" type="submit" value="<?php echo lang('save_changes'); ?>" /></p>

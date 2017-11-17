@@ -15,6 +15,7 @@ $setStatus = $conn->prepare("UPDATE signup SET online = :online_status WHERE id 
 $setStatus->bindParam(':online_status',$online_status,PDO::PARAM_INT);
 $setStatus->bindParam(':myid',$myid,PDO::PARAM_INT);
 $setStatus->execute();
+}
 ?>
 <script type="text/javascript">
 window.onbeforeunload = function(){
@@ -26,8 +27,6 @@ window.onbeforeunload = function(){
     });
 }
 </script>
-<? } ?>
-<? // =============================================================================== ?>
 <link rel='shortcut icon' type='image/x-icon' href='<? echo $dircheckPath ?>imgs/favicon.ico' />
 <link rel="stylesheet" href="<?php echo $dircheckPath; ?>css/style.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo $dircheckPath; ?>css/font-awesome-4.5.0/css/font-awesome.min.css">

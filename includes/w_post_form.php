@@ -80,7 +80,7 @@ if (is_dir("imgs/")) {
     <input class="default_flat_btn" type="submit" name="post_now" value="<?php echo lang('post_now'); ?>" style="margin: 5px;padding: 8px 10px;" />
     </li>
     <li style="float:<?php echo lang('w_post_li2'); ?>;">
-        <select id="p_privacy" style="margin: 5px;padding: 8px 10px;max-width: 110px;" name="w_privacy">
+        <select id="p_privacy" style="margin: 5px; padding: 0px 10px; max-width: 110px; height: 35px;" name="w_privacy">
             <option selected=""><?php echo lang('wpr_public'); ?></option>
             <option><?php echo lang('wpr_followers'); ?></option>
             <option></span> <?php echo lang('wpr_onlyme'); ?></option>
