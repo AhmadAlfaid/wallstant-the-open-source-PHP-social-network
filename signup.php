@@ -79,8 +79,8 @@ var cpassword = document.getElementById("cpd").value;
 var gender = document.getElementById("gr").value;
 $.ajax({
 type:'POST',
-url:'includes/supcode.php',
-data:'fn='+fullname+'&un='+username+'&em='+emailAdd+'&pd='+password+'&cpd='+cpassword+'&gr='+gender,
+url:'includes/login_signup_codes.php',
+data:{'req':'signup_code','fn':fullname,'un':username,'em':emailAdd,'pd':password,'cpd':cpassword,'gr':gender},
 beforeSend:function(){
 $('.login_signup_btn2').hide();
 $('#login_wait').html("<b><? echo lang('creating_your_account'); ?></b>");
