@@ -70,8 +70,8 @@ var username = document.getElementById("un").value;
 var password = document.getElementById("pd").value;
 $.ajax({
 type:'POST',
-url:'includes/lincode.php',
-data:'un='+username+'&pd='+password,
+url:'includes/login_signup_codes.php',
+data:{'req':'login_code','un':username,'pd':password},
 beforeSend:function(){
 $('.login_signup_btn1').hide();
 $('#login_wait').html("<? echo lang('loading'); ?>...");
